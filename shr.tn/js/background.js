@@ -13,14 +13,18 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function copyToClipboard(text)
-{
-	var input = document.getElementById('url');
-	
-	if(input == undefined)
-		return;
-	
-	input.value = text;					
-	input.select();
+{	
+	// make an input to copy to clipboard
+	$('#url').remove(); //garbager
+	$('<input />', {
+	    type: 'text',
+	    id: 'url'
+	}).appendTo("body");
+
+
+	$('#url').val(text);	
+	$('#url').focus();			
+	$('#url').select();
 	document.execCommand('Copy');
 }
 
@@ -68,11 +72,13 @@ function initBackground()
 		switch(request.type)
 		{
 			case "shorten":
+				console.log('shorten case');
 				var response = shortenUrl(request.url, request.incognito);
 				sendResponse(response);
 			break;
 			
 			case "copy":
+				console.log('copy case');
 				copyToClipboard(request.url);
 			break;
 		}

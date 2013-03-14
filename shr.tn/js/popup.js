@@ -31,11 +31,9 @@ function popUpHandler()
 			} else {	
 				$('#loading').removeClass('error');
 				
-				tab.shortenedUrl = response.message;
-	
-				chrome.extension.sendMessage({type: "copy", url: tab.shortenedUrl});
+				chrome.extension.sendMessage({type: "copy", url: response.message});
 			
-				$('#url').html(tab.shortenedUrl);
+				$('#url').html(response.message);
 						
 				$('#loading').toggleClass("hidden");
 				$('#response').toggleClass("visible");
