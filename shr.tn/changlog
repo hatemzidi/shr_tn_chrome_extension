@@ -1,7 +1,10 @@
 v 0.3
 + code cleaning and enhancements
-+ visual enhancements
++ lot of visual enhancements
 + updated to minified jquery 1.9.1
++ git repo created for the extention and pushed to chrome store
++ fixing clipboard function
++ adding logger for debugging.
 
 v 0.2.3 - unstable
 + fixing security 
