@@ -3,6 +3,7 @@
     try {
       window.localStorage.removeItem(key);
       window.localStorage.setItem(key, value);
+      console.log('setItem(' + key + '): ' + value );
     }catch(e) {
       console.log("Error inside setItem ");
       console.log(e);
@@ -21,7 +22,7 @@
 	    value = "null";
     }
     
-    console.log('getItem('+key+'): ' + value );
+    console.log('getItem(' + key +'): ' + value );
     return value;
   }
   
