@@ -35,18 +35,21 @@ function shortenUrl(url, incognito)
 	_url += "&format=txt&username="+username;
 	_url += "&api_key="+key;
 
-		$.ajax({
-		  url: _url,
-		  async: false,
-		  dataType: 'json',
-		  success: function (_data) {
-		    	if(_data.resp.code == 200 || _data.resp.code == 201 ) {
-				response = {status: "success", message: _data.data.short_url};
-			} else	{
-				response= {status: "error", message: _data.resp.message};
-			}
-		  }
-		});
+	if ( key === undefined && username === undefined )
+		return { status: "error", message: "No credentials available!"};		
+
+	$.ajax({
+	  url: _url,
+	  async: false,
+	  dataType: 'json',
+	  success: function (_data) {
+	    	if(_data.resp.code == 200 || _data.resp.code == 201 ) {
+			response = {status: "success", message: _data.data.short_url};
+		} else	{
+			response = {status: "error", message: _data.resp.message};
+		}
+	  }
+	});
 
 	return response;
 }
