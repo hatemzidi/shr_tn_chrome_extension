@@ -1,0 +1,23 @@
+v 0.3
++ code cleaning and enhancements
++ visual enhancements
++ updated to minified jquery 1.9.1
+
+v 0.2.3 - unstable
++ fixing security 
++ multiple minor fixes
+
+v 0.2.2 - unstable
++ manifest updated to version 2
+
+v 0.2.1
++ cleaning
+
+v 0.2
++ add username and key support
++ migrating to jquery 1.4.1
++ new icon
+
+v 0.1
++ first release
+

@@ -1,0 +1,284 @@
+﻿<html>
+	<head>
+		<title>goo.gl url shortener options</title>
+		<script type="text/javascript" src="scripts/services.js"></script>
+		<script type="text/javascript" src="scripts/localstorage.js"></script>
+		<script type="text/javascript" src="scripts/options.js"></script>
+		<link rel="stylesheet" type="text/css" href="stylesheets/options.css">
+	</head>
+	<body onload="init();">
+		<div class="div-main">
+			<div class="div-title">
+				Settings
+			</div>
+			<div style="height: 18px;">
+				<span id="preferencesTab" class="tab tab-selected" onclick="tabClick('preferences');">Preferences</span>
+				<span id="actionsTab" class="tab tab-unselected" onclick="tabClick('actions');">Actions</span>
+				<span id="servicesTab" class="tab tab-unselected" onclick="tabClick('services');">Services</span>
+				<span id="shortcutsTab" class="tab tab-unselected" onclick="tabClick('shortcuts');">Keyboard Shortcuts</span>
+				<span id="changelogTab" class="tab tab-unselected" onclick="tabClick('changelog');">Changelog</span>
+			</div>
+			<div id="preferencesDiv" class="tab-selected visible">
+				<div style="padding:13 6 5 6;">
+					<table cellspacing="0" cellpadding="0" style="width:100%;">
+						<tr>
+							<td class="div-first-preferences bold" style="width:300;">Automatically copy shortened url:</td>
+							<td class="div-first-preferences">
+								<input id="autoCopyTrue" name="auto_copy" type="radio" value="true" onchange="save();">
+								<label for="autoCopyTrue">&nbsp;&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;</label>
+								<br>
+								<input id="autoCopyFalse" name="auto_copy" type="radio" value="false" onchange="save();">
+								<label for="autoCopyFalse">&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;</label>
+							</td>
+						</tr>
+						<tr>
+							<td class="div-preferences bold" style="width:300;">Enable keyboard shortcuts:</td>
+							<td class="div-preferences">
+								<input id="shortcutTrue" name="shortcuts_enabled" type="radio" value="true" onchange="save();">
+								<label for="shortcutTrue">&nbsp;&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;</label>
+								<br>
+								<input id="shortcutFalse" name="shortcuts_enabled" type="radio" value="false" onchange="save();">
+								<label for="shortcutFalse">&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;</label>
+							</td>
+						</tr>
+						<tr>
+							<td class="div-preferences bold" style="width:300;">Enable context menu:</td>
+							<td class="div-preferences">
+								<input id="contextmenuTrue" name="contextmenu_enabled" type="radio" value="true" onchange="save();">
+								<label for="contextmenuTrue">&nbsp;&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;</label>
+								<br>
+								<input id="contextmenuFalse" name="contextmenu_enabled" type="radio" value="false" onchange="save();">
+								<label for="contextmenuFalse">&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;</label>
+							</td>
+						</tr>
+						<tr>
+							<td class="div-preferences bold" style="width:300;">Enable history:</td>
+							<td class="div-preferences">
+								<input id="historyTrue" name="history_enabled" type="radio" value="true" onchange="save();">
+								<label for="historyTrue">&nbsp;&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;</label>
+								<br>
+								<input id="historyFalse" name="history_enabled" type="radio" value="false" onchange="save();">
+								<label for="historyFalse">&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;</label>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="actionsDiv" class="tab-selected hidden">
+				<div style="padding:13 6 13 6;">			
+					<table cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="23"><input type="checkbox" id="copy" onchange="save();"/></td>
+							<td width="23"><img src="icons/copy.png" width="16"></td>
+							<td>Copy</td>
+						</tr>
+						<tr>
+							<td width="23"><input type="checkbox" id="details" onchange="save();"/></td>
+							<td width="23"><img src="icons/details.png" width="16"></td>
+							<td>Details</td>
+						</tr>
+						<tr>
+							<td width="23"><input type="checkbox" id="qrcode" onchange="save();"/></td>
+							<td width="23"><img src="icons/qrcode.png" width="16"></td>
+							<td>QR Code</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="servicesDiv" class="tab-selected hidden">
+				<div style="padding:13 6 13 6;">			
+					<table id="servicesTable" cellspacing="0" cellpadding="0"></table>
+				</div>
+			</div>
+			<div id="shortcutsDiv" class="tab-selected hidden">
+				<div style="padding:13 6 5 6;">
+					<div style="padding:8 0 20 0;" >
+						<div class="bold">Please note:</div>
+						<div>The keyboard shortcuts don't work in the <a href="https://chrome.google.com/extensions" target="_blank">Chrome Extensions Gallery pages</a>, and in the chrome special page like New Tab, Extensions, Downloads due to security reason</div>
+					</div>
+					<table id="shortcutsTable" cellspacing="0" cellpadding="0" style="width:100%;">
+						<tr>
+							<td class="div-preferences" width="200px">
+								Copy url
+							</td>
+							<td class="div-preferences" width="80%">
+								<span id="spanCopyShortcut">&nbsp;</span>
+								<input id="hiddenCopyShortcut" type="hidden" />
+							</td>
+							<td class="div-preferences" width="50px">
+								<span class="link" onclick="createShortcut('CopyShortcut');">edit</span>						
+							</td>
+							<td class="div-preferences" width="50px">
+								<span class="link" onclick="deleteShortcut('CopyShortcut');">delete</span>
+							</td>
+						</tr>
+					</table>
+					<div id="trWarning" class="hidden">
+						<div class="alert-preferences">You must reload all the opened tabs to apply the new keyboard shortcuts</div>
+					</div>
+				</div>
+			</div>
+			<div id="changelogDiv" class="tab-selected hidden">
+				<div style="padding:13 6 13 6;">
+					<b>Version 0.5.7</b>
+					<ul>
+						<li>Fixed shortcuts bug</li>
+					</ul>
+					
+					<b>Version 0.5.6</b>
+					<ul>
+						<li>Fixed some bug</li>
+					</ul>
+				
+					<b>Version 0.5.5</b>
+					<ul>
+						<li>Fixed some bug</li>
+					</ul>
+				
+					<b>Version 0.5.4</b>
+					<ul>
+						<li>Added Evernote</li>
+						<li>Added FriendFeed</li>
+						<li>Added Google Bookmarks</li>
+						<li>Added Hotmail</li>
+						<li>Added Instapaper</li>
+						<li>Added LinkedIn</li>
+						<li>Added Netlog</li>
+						<li>Added Orkut</li>
+						<li>Added Ping.fm</li>
+						<li>Added Posterous</li>
+						<li>Added Reddit</li>
+						<li>Added Read It Later</li>
+						<li>Added StumbleUpon</li>
+						<li>Added Technorati</li>
+						<li>Added Tumblr</li>
+						<li>Added Yahoo! Bookmarks</li>
+						<li>Added Yahoo! Mail</li>
+					</ul>
+				
+					<b>Version 0.5.3</b>
+					<ul>
+						<li>Shortened url not saved to history in Incognito mode</li>
+						<li>Required chrome version 6 or higher</li>
+						<li>Workaround to fix popup bug in chrome version 9.0.567 dev</li>
+					</ul>
+					
+					<b>Version 0.5.2</b>
+					<ul>
+						<li>Shortcuts are now not triggered when compiling web form</li>
+					</ul>
+				
+					<b>Version 0.5.1</b>
+					<ul>
+						<li>Fixed share with services</li>
+						<li>Fixed save settings</li>
+					</ul>
+				
+					<b>Version 0.5.0</b>
+					<ul>
+						<li>Improved history</li>
+						<li>Added context menu</li>
+						<li>Added QR code</li>
+						<li>Added short url details</li>
+						<li>New layout of the popup</li>
+					</ul>
+				
+					<b>Version 0.4.7</b>
+					<ul>
+						<li>Changes in Copy url functionality</li>
+					</ul>
+				
+					<b>Version 0.4.6</b>
+					<ul>
+						<li>Added Google Buzz</li>
+						<li>Fixed shortcuts bug</li>
+					</ul>
+				
+					<b>Version 0.4.5</b>
+					<ul>
+						<li>Fixed "Could not load file 'scripts/content_script.js' for content script. It isn't UTF-8 encoded" issue</li>
+					</ul>
+				
+					<b>Version 0.4.4</b>
+					<ul>
+						<li>Fixed "Shortening..." bug</li>
+					</ul>
+					
+					<b>Version 0.4.3</b>
+					<ul>
+						<li>Fixed "Shortening..." bug</li>
+					</ul>
+				
+					<b>Version 0.4.2</b>
+					<ul>
+						<li>Added Google Reader</li>
+					</ul>
+				
+					<b>Version 0.4.1</b>
+					<ul>
+						<li>Release under <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/" target="_blank">Creative Common license</a></li>
+						<li>Release not obfuscate code</li>
+					</ul>
+				
+					<b>Version 0.4.0</b>
+					<ul>
+						<li>Added keyboard shortcuts</li>
+						<li>Added changelog</li>
+						<li>Added Delicious</li>
+						<li>Added Digg</li>
+						<li>Added MySpace</li>
+						<li>New layout of options page</li>
+						<li>Added option to show service icon</li>
+					</ul>
+
+					<b>Version 0.3.4</b>
+					<ul>
+						<li>Fixed share with services bug</li>
+					</ul>
+
+					<b>Version 0.3.3</b>
+					<ul>
+						<li>Added Blogger</li>
+						<li>Gmail and standard mail is now two separate services</li>
+						<li>Title on left side when share with Twitter</li>
+						<li>Fixed text color issue with some theme</li>
+					</ul>
+
+					<b>Version 0.3.2</b>
+					<ul>
+						<li>Added "Include title" option for twitter</li>
+					</ul>
+
+					<b>Version 0.3.1</b>
+					<ul>
+						<li>Added tooltip to extension's icon</li>
+					</ul>
+
+					<b>Version 0.3</b>
+					<ul>
+						<li>Added Facebook</li>
+						<li>Added mail</li>
+						<li>Added auto-copy</li>
+						<li>Added options page</li>
+					</ul>
+
+					<b>Version 0.2</b>
+					<ul>
+						<li>Added Twitter</li>
+						<li>New layout of the popup</li>
+					</ul>
+
+					<b>Version 0.1.1</b>
+					<ul>
+						<li>Copy automatically close popup</li>
+					</ul>
+
+					<b>Version 0.1</b>
+					<ul>
+						<li>Initial Release</li>
+					</ul>
+				</div>
+			</div >
+		</div>
+	</body>
+</html>
