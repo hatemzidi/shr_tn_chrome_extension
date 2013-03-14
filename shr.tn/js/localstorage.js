@@ -21,6 +21,7 @@
 	    value = "null";
     }
     
+    console.log('getItem('+key+'): ' + value );
     return value;
   }
   
