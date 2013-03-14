@@ -11,11 +11,15 @@ function init() {
 function save() {
 	$('#errors_box').hide();
 
-	if ( $('#username').val() != '' && $('#key').val() != '' ) {
-	  setItem('shrtn_username', $('#username').val() );
-	  setItem('shrtn_key', $('#key').val());
+	if ( $('#username').val() !== '' && $('#key').val() !== '' ) {
+		setItem('shrtn_username', $('#username').val() );
+		setItem('shrtn_key', $('#key').val());
+		$('p#message').removeClass().addClass('success');
+		$('p#message').html('Credentials saved!');
+		$('#errors_box').show();
 	} else {
-		$('#errors_box').html('Insert you username & key, please!');
+		$('p#message').removeClass().addClass('error');
+		$('p#message').html('Insert you username & key, please!');
 		$('#errors_box').show();
 	}
 }

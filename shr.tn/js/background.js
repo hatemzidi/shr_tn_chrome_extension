@@ -26,17 +26,22 @@ function copyToClipboard(text)
 
 function shortenUrl(url, incognito)
 {
+	console.log('background.js::shortenUrl()');
+
 	var response;
 
-	var username = getItem('shrtn_username'); 
+	var username = getItem('shrtn_username');
  	var key = getItem('shrtn_key');
 	
-	_url  = " http://shr.tn/api/v1/short?long="+encodeURIComponent(url);
-	_url += "&format=txt&username="+username;
-	_url += "&api_key="+key;
+	_url  = "http://shr.tn/api/v1/short?long=" + encodeURIComponent(url);
+	_url += "&format=txt&username=" + username;
+	_url += "&api_key=" + key;
 
-	if ( key === undefined && username === undefined )
-		return { status: "error", message: "No credentials available!"};		
+
+	if ( key === null || username === null ) {
+		console.error('no credientials!'); 
+		return { status: "error", message: "No credentials available!"};
+	}		
 
 	$.ajax({
 	  url: _url,
@@ -56,10 +61,10 @@ function shortenUrl(url, incognito)
 
 function initBackground()
 { 
-
 	chrome.extension.onMessage.addListener(function(request, sender, sendResponse) 
 	{	
-		console.log('router');
+		console.log('background.js::initBackground()');
+
 		switch(request.type)
 		{
 			case "shorten":
@@ -70,7 +75,6 @@ function initBackground()
 			case "copy":
 				copyToClipboard(request.url);
 			break;
-			
 		}
 	});
 }
