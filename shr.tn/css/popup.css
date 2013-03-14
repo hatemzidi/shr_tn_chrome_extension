@@ -87,6 +87,6 @@ a:hover, a:active
 	color : rgb(213, 75, 75);
 	font-size: 11px !important;
 	font-weight: bold;
-	background: url('../icons/error.gif') no-repeat;
+	background: url('../icons/error.gif') 0px -1px no-repeat;
 	padding-left: 20px;
 }
