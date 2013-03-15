@@ -13,61 +13,74 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function copyToClipboard(text)
-{
-	var input = document.getElementById('url');
-	
-	if(input == undefined)
-		return;
-	
-	input.value = text;					
-	input.select();
+{	
+	// make an input to copy to clipboard
+	$('#url').remove(); //garbager
+	$('<input />', {
+	    type: 'text',
+	    id: 'url'
+	}).appendTo("body");
+
+
+	$('#url').val(text);	
+	$('#url').focus();			
+	$('#url').select();
 	document.execCommand('Copy');
 }
 
 function shortenUrl(url, incognito)
 {
+	console.log('background.js::shortenUrl()');
+
 	var response;
 
-	var username = getItem('shrtn_username'); 
+	var username = getItem('shrtn_username');
  	var key = getItem('shrtn_key');
 	
-	_url  = " http://shr.tn/api/v1/short?long="+encodeURIComponent(url);
-	_url += "&format=txt&username="+username;
-	_url += "&api_key="+key;
+	_url  = "http://shr.tn/api/v1/short?long=" + encodeURIComponent(url);
+	_url += "&format=txt&username=" + username;
+	_url += "&api_key=" + key;
 
-		$.ajax({
-		  url: _url,
-		  async: false,
-		  dataType: 'json',
-		  success: function (_data) {
-		    	if(_data.resp.code == 200 || _data.resp.code == 201 ) {
-				response = {status: "success", message: _data.data.short_url};
-			} else	{
-				response= {status: "error", message: _data.resp.message};
-			}
-		  }
-		});
+
+	if ( key === null || username === null ) {
+		console.error('no credientials!'); 
+		return { status: "error", message: "No credentials available!"};
+	}		
+
+	$.ajax({
+	  url: _url,
+	  async: false,
+	  dataType: 'json',
+	  success: function (_data) {
+	    	if(_data.resp.code == 200 || _data.resp.code == 201 ) {
+			response = {status: "success", message: _data.data.short_url};
+		} else	{
+			response = {status: "error", message: _data.resp.message};
+		}
+	  }
+	});
 
 	return response;
 }
 
 function initBackground()
 { 
-
 	chrome.extension.onMessage.addListener(function(request, sender, sendResponse) 
 	{	
-		console.log('router');
+		console.log('background.js::initBackground()');
+
 		switch(request.type)
 		{
 			case "shorten":
+				console.log('shorten case');
 				var response = shortenUrl(request.url, request.incognito);
 				sendResponse(response);
 			break;
 			
 			case "copy":
+				console.log('copy case');
 				copyToClipboard(request.url);
 			break;
-			
 		}
 	});
 }

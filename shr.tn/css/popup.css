@@ -2,7 +2,7 @@
 {
 	font-family: verdana, arial;
 	color: #000000;
-	background-color: #FFFFFF; 
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FDFDFD), to(#E6F2CB));
 	margin: 0;
 	padding: 0;
 }
@@ -25,12 +25,14 @@
 	font-size: 10px;
 	white-space: nowrap;
 	text-align: right;
-	font-weight:bold;	
+	font-weight:bold;
+	height: 20px;	
 }
 #history p {
-	color : #7CCD7C;
-	font-weight : normal;
-	line-height: 10px;
+	color: #21AF21;
+	font-weight: normal;
+	line-height: 20px;
+	background: url('../icons/clipboard.png') 18px 3px no-repeat;
 }
 #qrcode
 {
@@ -87,6 +89,6 @@ a:hover, a:active
 	color : rgb(213, 75, 75);
 	font-size: 11px !important;
 	font-weight: bold;
-	background: url('../icons/error.gif') no-repeat;
+	background: url('../icons/error.gif') 0px -1px no-repeat;
 	padding-left: 20px;
 }
