@@ -1,10 +1,13 @@
 v 0.3
-+ code cleaning and enhancements
-+ lot of visual enhancements
-+ updated to minified jquery 1.9.1
-+ git repo created for the extention and pushed to chrome store
-+ fixing clipboard function
-+ adding logger for debugging.
++ new architecture design.
++ performance and security issues fixed.
++ code cleaning and enhancements.
++ lot of visual enhancements.
++ updated to minified jquery 1.9.1.
++ a public git repo for the extension (here : https://github.com/hatemzidi/shr_tn_chrome_extension)
++ extension pushed to chrome store.
++ fixing clipboard function.
++ adding logger for debugging mode.
 
 v 0.2.3 - unstable
 + fixing security 
