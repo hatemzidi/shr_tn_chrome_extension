@@ -24,15 +24,16 @@
 	margin: 0px 8px 0px 8px;
 	font-size: 10px;
 	white-space: nowrap;
-	text-align: right;
 	font-weight:bold;
-	height: 20px;	
+	height: 20px;
+	padding-left: 10px;	
 }
 #history p {
 	color: #21AF21;
 	font-weight: normal;
 	line-height: 20px;
-	background: url('../icons/clipboard.png') 18px 3px no-repeat;
+	background: url('../icons/clipboard.png') 0px 3px no-repeat;
+	padding-left: 15px;
 }
 #qrcode
 {
