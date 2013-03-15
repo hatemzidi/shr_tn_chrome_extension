@@ -1,12 +1,34 @@
 shr.tn chrome extension
 =======================
 
-as is.
+shorten your urls with shr.tn, the tunisian URL shortener, and share with many different service!
+shr.tn url shortener is an extension which allows you to shorten the current website URL with the URL Shortener service http://shr.tn/
+
+just install it, go to the extension settings, add your credentials and boom! enjoy it ;)
+
+► Features
+  ●  Official shr.tn API support
+  ●  Only support shr.tn credentials 
+  ●  Auto copy to clipboard
+  ●  Context menu
+  ●  QRCode
+ 
+ 
+► This extension can access
+  ●  Your data on all websites
+  ●  Your tabs and browsing activity
 
 
 
 changelog
 ---------
+
+v 0.3.2
++ add an option for QRCode
++ show qrcode link in popup
++ visual enhancements for options page
++ better handling in options page
++ more refactoring
 
 v 0.3.1
 + fixing contextual menu behavior
