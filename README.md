@@ -7,16 +7,16 @@ shr.tn url shortener is an extension which allows you to shorten the current web
 just install it, go to the extension settings, add your credentials and boom! enjoy it ;)
 
 ► Features
-  ●  Official shr.tn API support
-  ●  Only support shr.tn credentials 
-  ●  Auto copy to clipboard
-  ●  Context menu
-  ●  QRCode
+  +  Official shr.tn API support
+  +  Only support shr.tn credentials 
+  +  Auto copy to clipboard
+  +  Context menu
+  +  QRCode
  
  
 ► This extension can access
-  ●  Your data on all websites
-  ●  Your tabs and browsing activity
+  +  Your data on all websites
+  +  Your tabs and browsing activity
 
 
 
