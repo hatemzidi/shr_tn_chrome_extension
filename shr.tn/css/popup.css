@@ -2,8 +2,6 @@
     font-family: verdana, arial;
     color: #000000;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FDFDFD), to(#E6F2CB));
-    margin: 0;
-    padding: 0;
 }
 
 #loading {
@@ -12,55 +10,49 @@
     white-space: nowrap;
 }
 
+#response {
+	height: 50px;
+}
+
 #url {
     margin: 8px 8px 0px 8px;
     font-size: 14px;
     white-space: nowrap;
-    text-align: right;
-}
-
-#history {
-    margin: 0px 8px 0px 8px;
-    font-size: 10px;
-    white-space: nowrap;
-    font-weight: bold;
-    height: 20px;
-    padding-left: 10px;
-}
-
-#history p {
-    color: #21AF21;
-    font-weight: normal;
-    line-height: 20px;
-    background: url('../icons/clipboard.png') 0px 3px no-repeat;
-    padding-left: 15px;
-}
-
-#qrcode {
-    margin-top: 2px;
-    margin-bottom: 5px;
     text-align: center;
 }
 
-.title {
-    font-size: 10px;
-    background-color: #E5ECF9;
-    font-weight: bold;
-    margin-bottom: 3px;
-    height: 1em;
-    padding: 0.3em 0 0.5em 3px;
-}
-
-.margin-top {
-    margin-top: 8px;
-}
-
-.item {
-    font-size: 14px;
-    white-space: nowrap;
-    height: 1.5em;
+#extras {
     margin: 0px 8px 0px 8px;
+    font-size: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    padding-left: 10px;
 }
+
+#extras p {
+	color: #21AF21;
+    font-weight: normal;
+    line-height: 20px;
+    float : left;
+}
+p#clipboard {
+    background: url('../icons/clipboard.png') 0px 3px no-repeat;
+    padding-left: 16px;
+}
+
+p#qrcode {
+	border-right: 1px solid #CCC;
+	margin-right: 5px;
+	padding-right: 5px;
+}
+
+p#qrcode  a {
+    background: url('../icons/qrcode.png') right 2px no-repeat;
+    padding-right: 18px;
+	line-height: 20px;
+	display : block;
+}
+
 
 img {
     vertical-align: text-top;
@@ -74,16 +66,6 @@ a:link , a:visited {
 a:hover, a:active {
     color: #000000;
     text-decoration: underline;
-}
-
-.hidden {
-    visibility: hidden;
-    display: none;
-}
-
-.visible {
-    visibility: visible;
-    display: block;
 }
 
 .error {

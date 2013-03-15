@@ -13,7 +13,6 @@ function initOptions() {
 	// add change events for checkboxes
 	$('input:checkbox').change(function() {
 	  setItem('shrtn_'+this.id, $(this).is(":checked"));
-	  console.log(this.id + " " + $(this).is(":checked"));
 	  return false;  
 	});
 }

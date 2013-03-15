@@ -32,5 +32,3 @@
     window.localStorage.clear();
     console.log('cleared');
   }
-
-

@@ -2,7 +2,7 @@
    "manifest_version": 2,
    "name": "shr.tn | URL shortener",
    "description": "Shorten url with shr.tn",
-   "version": "0.3.1",
+   "version": "0.3.2",
    
    "content_security_policy": "script-src 'self'; object-src 'self'",
    

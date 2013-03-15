@@ -14,7 +14,17 @@
 
 var currentTab;
 
+function setQRCode(url){
+	var qrcode = getItem('shrtn_qrcode');
 
+	if ( qrcode !== null && qrcode !== "false" ) {
+		$('#aqrcode').attr('href', url + '/qrc');
+		$('p#qrcode').show();
+	} else
+		$('p#qrcode').hide();
+
+	return;
+}
 
 function popUpHandler()
 {	
@@ -40,6 +50,7 @@ function popUpHandler()
 				$('#url').html(response.message);
 						
 				$('#loading').hide();
+				setQRCode(response.message);
 				$('#response').show();
 			}
 		});

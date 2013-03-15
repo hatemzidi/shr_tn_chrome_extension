@@ -1,28 +1,22 @@
-﻿<html>
+﻿<!DOCTYPE html>
 	<head>
 		<title>shr.tn url shortener</title>
 		<link rel="stylesheet" type="text/css" href="css/popup.css">
-		<script type="text/javascript" src="js/jquery.js"></script>  
+
+		<script type="text/javascript" src="js/jquery.js"></script> 
+        <script type="text/javascript" src="js/localstorage.js"></script>  		 
 		<script type="text/javascript" src="js/popup.js"></script>
 	</head>
 	<body > 
 		<div id="loading">Shortening...&nbsp;<img src="icons/loading.gif"/></div>
 		<div id="response"> 
 			<div id="url"></div>
+			<div id="extras" >
+				<p id="qrcode"><a id="aqrcode" href="" alt="open QRCode" target="_blank">QRCode</a></p>
+				<p id="clipboard">added to clipboard</p>
+			</div>
 
-			<div id="history">
-				<p>added to clipboard</p>
-			</div>
-		
-			<div class="margin-top">
-				<div id="actions" class="hidden">
-					<div class="title">URL Actions</div>
-				</div>
-				<div id="qrcode" class="hidden"></div>
-				<div id="services" class="hidden">
-					<div class="title">Services</div>
-				</div>
-			</div>
+			
 		</div>
 	</body>
 </html>
