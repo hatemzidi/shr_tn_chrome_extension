@@ -63,6 +63,17 @@ function shortenUrl(url, incognito)
 	return response;
 }
 
+
+function showNotification(title,message)
+{
+	var notification = window.webkitNotifications.createNotification(
+						'icons/shrtn_48.png',          // The image.
+						title, 						   // The title.
+						message      				   // The body.
+						);
+	notification.show();
+}
+
 function initBackground()
 { 
 	chrome.extension.onMessage.addListener(function(request, sender, sendResponse) 

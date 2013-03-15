@@ -2,7 +2,7 @@
    "manifest_version": 2,
    "name": "shr.tn | URL shortener",
    "description": "Shorten url with shr.tn",
-   "version": "0.3",
+   "version": "0.3.1",
    
    "content_security_policy": "script-src 'self'; object-src 'self'",
    
@@ -29,8 +29,12 @@
       "128": "icons/shrtn_128.png"
    },
    
-   "permissions": [ "tabs", "contextMenus", "http://shr.tn/" ],
+   "permissions": [ "tabs", "contextMenus", "http://shr.tn/", "notifications" ],
 
-   "options_page": "options.html"
+   "options_page": "options.html",
+
+   "web_accessible_resources": [
+    "icons/shrtn_48.png"
+  ]
 
 }

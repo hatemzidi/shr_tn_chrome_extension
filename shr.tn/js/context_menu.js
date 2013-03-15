@@ -16,28 +16,22 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // Set up context menu tree at install time.
 chrome.runtime.onInstalled.addListener(function() {
- 
    chrome.contextMenus.create({"title": "Shorten link with shr.tn", "contexts": ["link"], "id": "parent"});
-
-   //chrome.contextMenus.create({"title": "Shorten link and copy it to clipboard", "contexts": ["link"], "parentId": "parent", "id" : "shrtn_menu"});
-  
 });
 
 
 function onClickHandler(info, tab)
 {
-	console.dir({type: "shorten", url: info.linkUrl, incognito: tab.incognito});
+	var response = shortenUrl(info.linkUrl, tab.incognito);	
 
-	chrome.extension.sendMessage({type: "shorten", url: info.linkUrl, incognito: tab.incognito}, function(response) 
-		{	
-			console.log("onClickHandler.js::sendMessage");
-			console.dir(response);
-			if ( response === undefined || response.status == "error") {
-				console.log('error')
-			} else {	
-				tab.shortenedUrl = response.message;
-				chrome.extension.sendMessage({type: "copy", url: tab.shortenedUrl});
-
-			}
-	});	
+	if ( response === undefined  || response.status == "error") {
+		title = " Oops, I can't shorten this url !"
+		msg = "An error occured while processing this link.";
+	} else {	
+		title = " Yeay, " + response.message;
+		msg = "Already copied to clipboard!";
+		copyToClipboard(response.message);
+	}
+	showNotification(title, msg);
+    
 }

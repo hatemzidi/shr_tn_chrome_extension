@@ -8,6 +8,10 @@ as is.
 changelog
 ---------
 
+v 0.3.1
++ fixing contextual menu behavior
++ adding desktop notification for contextual menu
+
 v 0.3
 + new architecture design.
 + performance and security issues fixed.
