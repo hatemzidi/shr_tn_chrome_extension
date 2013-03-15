@@ -24,35 +24,49 @@
                 
                 <h1 id="h1_options">Your credentials</h1>
                                       
-                <div id="info_contents" style="display:block;">
+                <div id="info_contents" >
                     <form id="signin_form" action="#" method="get" accept-charset="utf-8">
                         
-                        <div id="errors_box" class="chrome_page_errors_box" >
+                        <div id="messageBox">
                             <p id="message"></p>
                         </div>
-                        
-                        <div class="inputContainer">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" value="" id="username">
-                        </div>
-                        
-                        <div class="inputContainer">
-                            <label for="password">key</label>
-                            <input type="text" name="key" value="" id="key">
-                        </div>
-                        
-                        <div id="signInContainer">
-                            <div id="signInButtonContainer">
-                                	<input type="button" class="mediumSizeButton color red" 
-                                	name="some_name" 
-                                	value="Save" 
-                                	id="login">
-                                    &nbsp;
-                                    <input type="button" class="mediumSizeButton color red" 
-                                    name="some_name" 
-                                    value="Test" 
-                                    id="test">
+                        <div id="col_left">
+                            <div class="inputContainer">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" value="" id="username">
                             </div>
+                            
+                            <div class="inputContainer">
+                                <label for="password">key</label>
+                                <input type="text" name="key" value="" id="key">
+                            </div>
+                            
+                            <div id="signInContainer">
+                                <div id="signInButtonContainer">
+                                        <input type="button" class="mediumSizeButton color red" 
+                                        name="some_name" 
+                                        value="Test" 
+                                        id="test">
+                                </div>
+                           </div>
+                       </div>
+
+                       <div id="col_right">
+                           <div id="optionsContainer">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" id="qrcode" />&nbsp;Show QRCode
+                                </li>
+                                
+                                <li>
+                                    <input type="checkbox" id="stats"  />&nbsp;Show Stats
+                                </li>
+                                
+                                <li>
+                                    <input type="checkbox" id="history" />&nbsp;Show History
+                                </li>
+                            </ul>
+                           </div>
                        </div>
                         
                        
@@ -71,9 +85,7 @@
             </div> <!-- end #bottom -->
         
         </div> <!-- end #container -->
-        
-            
-            <!-- <script type="text/javascript" src=""></script> -->
+
         <script type="text/javascript" src="js/options.js"></script>  
 
     

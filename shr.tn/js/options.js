@@ -2,51 +2,60 @@ function initOptions() {
   	$('#username').val( getItem('shrtn_username') );
 	$('#key').val( getItem('shrtn_key') );
 	
-	$('#errors_box').hide();
+	$('input:checkbox').each(function() {
+		//TODO : clean this ugly test :(
+		$(this).prop('checked', (getItem('shrtn_'+this.id) === "false" || getItem('shrtn_'+this.id) === null ) ? false : true );
+	});
 
-	$('#login').bind('click', save);
 	$('#test').removeClass('green').addClass('red');
-	
 	$('#test').bind('click', testCredentials);
-	$('#login').removeClass('green').addClass('red');
+
+	// add change events for checkboxes
+	$('input:checkbox').change(function() {
+	  setItem('shrtn_'+this.id, $(this).is(":checked"));
+	  console.log(this.id + " " + $(this).is(":checked"));
+	  return false;  
+	});
 }
 
-function save() {
-	$('#errors_box').hide();
-
+function saveCredentials() {
 	if ( $('#username').val() !== '' && $('#key').val() !== '' ) {
 		setItem('shrtn_username', $('#username').val() );
 		setItem('shrtn_key', $('#key').val());
-		
-		$('p#message').removeClass().addClass('success');
-		$('p#message').html('Credentials saved!');
-		$('#errors_box').show();
+		return true;
 	} else {
 		$('p#message').removeClass().addClass('error');
 		$('p#message').html('Insert you username & key, please!');
-		$('#errors_box').show();
+		return false;
 	}
+ 
 }
 
 function testCredentials() {
-	$('#errors_box').hide();
+	$('#messageBox').hide();
+	$('p#message').removeClass()
+	$('p#message').html('');
 
-	_url  = "http://shr.tn/api/v1/short?long=" + encodeURIComponent("http://shr.tn");
-	_url += "&format=txt&username=" + $('#username').val();
-	_url += "&api_key=" + $('#key').val();
-	
-	$.getJSON( _url, function(data){
-		$('#errors_box').show();
-		   if ( !data.resp.status ) {
-            	$('p#message').removeClass().addClass('error');
-		   		$('p#message').html('Failure! please check your username or key.');
-		   		$('input#test').removeClass('green').addClass('red');
-		   } else {
+	if (saveCredentials()) {
+		_url  = "http://shr.tn/api/v1/short?long=" + encodeURIComponent("http://shr.tn");
+		_url += "&format=txt&username=" + $('#username').val();
+		_url += "&api_key=" + $('#key').val();
+		
+		$.getJSON( _url, function(data){
+
+			if ( !data.resp.status ) {
+				$('p#message').removeClass().addClass('error');
+				$('p#message').html('Oops! Please check your username or key.');
+				$('input#test').removeClass('green').addClass('red');
+			} else {
 				$('p#message').removeClass().addClass('success');
-            	$('p#message').html('Horra ! all is ok !');
-            	$('input#test').removeClass('red').addClass('green');
-            }
-	 	}, "json");
+				$('p#message').html('Horra ! all is ok !');
+				$('input#test').removeClass('red').addClass('green');
+			}
+			}, "json");
+	}
+
+	$('#messageBox').fadeIn(500);	
 
 }
 

@@ -29,7 +29,7 @@ function onClickHandler(info, tab)
 		msg = "An error occured while processing this link.";
 	} else {	
 		title = " Yeay, " + response.message;
-		msg = "Already copied to clipboard!";
+		msg = "Already added to clipboard!";
 		copyToClipboard(response.message);
 	}
 	showNotification(title, msg);
