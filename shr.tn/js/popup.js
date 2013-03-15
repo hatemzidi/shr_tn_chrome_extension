@@ -20,6 +20,10 @@ function popUpHandler()
 {	
 	chrome.tabs.getSelected(null, function(tab) 
 	{ 
+		// init
+		$('#loading').show();
+		$('#response').hide();
+		
 		chrome.extension.sendMessage({type: "shorten", url: tab.url, incognito: tab.incognito}, function(response) 
 		{	
 			if ( response === undefined  ) {
@@ -35,8 +39,8 @@ function popUpHandler()
 			
 				$('#url').html(response.message);
 						
-				$('#loading').toggleClass("hidden");
-				$('#response').toggleClass("visible");
+				$('#loading').hide();
+				$('#response').show();
 			}
 		});
 	});
