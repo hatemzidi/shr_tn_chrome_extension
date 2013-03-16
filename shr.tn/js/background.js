@@ -28,6 +28,11 @@ function copyToClipboard(text)
 	document.execCommand('Copy');
 }
 
+
+function setHeader(xhr) {
+            xhr.setRequestHeader("User-Agent","chrome-extension");
+}
+
 function shortenUrl(url, incognito)
 {
 	console.log('background.js::shortenUrl()');
@@ -57,7 +62,8 @@ function shortenUrl(url, incognito)
 		} else	{
 			response = {status: "error", message: _data.resp.message};
 		}
-	  }
+	  },
+	  beforeSend: setHeader
 	});
 
 	return response;
