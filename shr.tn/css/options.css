@@ -15,14 +15,16 @@
 }
 
 #optionsContainer {
-  width : 400px;
-  height : 150px;
-  border-left: 1px solid #CCC;
+    width: 400px;
+    height: 150px;
+    border: 1px solid #CCC;
+    background-color: whiteSmoke;
+    border-radius: 7px;
 }
 
 #messageBox {
-  display: block; 
-  height : 55px;
+    display: block;
+    height: 55px;
 }
 
 #signInButtonContainer {
@@ -218,8 +220,13 @@ p {
 }
 
 #optionsContainer ul {
-  font-size: 1.2em;
-  padding-left: 20px;
-  float: left;
-  list-style-type: none;
+    font-size: 1.2em;
+    padding-left: 20px;
+    padding-top: 10px;
+    float: left;
+    list-style-type: none;
+}
+
+#optionsContainer ul li {
+    color: #C00;
 }
