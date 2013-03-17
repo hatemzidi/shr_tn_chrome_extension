@@ -25,7 +25,7 @@ changelog
 
 v 0.3.2
 + add an option for QRCode
-+ show qrcode link in popup
++ show QRCode link in popup
 + visual enhancements for options page
 + better handling in options page
 + more refactoring
