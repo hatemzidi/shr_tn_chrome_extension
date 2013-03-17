@@ -57,13 +57,12 @@ function shortenUrl(url, incognito)
 	  async: false,
 	  dataType: 'json',
 	  success: function (_data) {
-	    	if(_data.resp.code == 200 || _data.resp.code == 201 ) {
+	    if( _data.resp.code == 200 || _data.resp.code == 201 ) {
 			response = {status: "success", message: _data.data.short_url};
 		} else	{
 			response = {status: "error", message: _data.resp.message};
 		}
-	  },
-	  beforeSend: setHeader
+	  }
 	});
 
 	return response;
