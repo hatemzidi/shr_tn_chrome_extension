@@ -36,16 +36,16 @@ function testCredentials() {
 	$('p#message').html('');
 
 	if (saveCredentials()) {
-		_url  = "http://shr.tn/api/v1/short?long=" + encodeURIComponent("http://shr.tn");
+		_url  = "http://shr.tn/api/v1/short?long=" + encodeURIComponent("http://www.test-link.com");
 		_url += "&format=txt&username=" + $('#username').val();
 		_url += "&api_key=" + $('#key').val();
 		
 		$.getJSON( _url, function(data){
-
-			if ( !data.resp.status ) {
+			if ( data.resp.status === 0 ) {
 				$('p#message').removeClass().addClass('error');
 				$('p#message').html('Oops! Please check your username or key.');
 				$('input#test').removeClass('green').addClass('red');
+				console.error('oops! error with credentials.')
 			} else {
 				$('p#message').removeClass().addClass('success');
 				$('p#message').html('Horra ! all is ok !');
